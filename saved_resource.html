@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- saved from url=(0012)about:srcdoc -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js" crossorigin=""></script>
+<script src="https://assets.editor.p5js.org/5c5bc37c07d9ce001edcb109/374cd95d-2aeb-42ec-9bfa-be3ad08a0e07.js" crossorigin=""></script>
+    
+    
+
+  <!--<base href="https://editor.p5js.org/mini.blr103/sketches/BfdCY7NeY/">--><base href="."><style>
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+</style><script src="https://editor.p5js.org/previewScripts.js"></script><style data-emotion=""></style><script>
+    function getScriptOff(line) {
+      var offs = [[56,"sketch"]];
+      var l = 0;
+      var file = '';
+      for (var i=0; i<offs.length; i++) {
+        var n = offs[i][0];
+        if (n < line && n > l) {
+          l = n;
+          file = offs[i][1];
+        }
+      }
+      return [line - l, file];
+    }
+    // catch reference errors, via http://stackoverflow.com/a/12747364/2994108
+    window.onerror = function (msg, url, lineNumber, columnNo, error) {
+        var string = msg.toLowerCase();
+        var substring = "script error";
+        var data = {};
+        if (url.match(/^(http:\/\/|https:\/\/)/) !== null && error.stack){
+          var errorNum = error.stack.split('about:srcdoc:')[1].split(':')[0];
+          var fileInfo = getScriptOff(errorNum);
+          data = msg + ' (' + fileInfo[1] + ': line ' + fileInfo[0] + ')';
+        } else {
+          var fileInfo = getScriptOff(lineNumber);
+          data = msg + ' (' + fileInfo[1] + ': line ' + fileInfo[0] + ')';
+        }
+        window.parent.postMessage([{
+          log: [{
+            method: 'error',
+            data: [data],
+            id: Date.now().toString()
+          }],
+          source: fileInfo[1]
+        }], '*');
+      return false;
+    };
+  </script></head>
+  <body>
+      <script data-tag="@fs-sketch.js">var head,body,leg,larm,rarm;
+var headImg,headImgb,bodyImga,bodyImgb,legImga,legImgb,larmImga, larmImgb,rarmImga,rarmImgb;
+
+var changeIcon,changeImg;
+
+var hd,bd,ld;
+
+var gs;
+
+function preload(){
+  headImg=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/ad9016d2-7c21-4a7a-8be9-d43f857d286b.jpg");
+  headImgb=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/4eef133f-a402-4a53-b155-04f77986762e.jpg");
+  bodyImga=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/e6e126df-2c2a-41d0-9519-fc321a317256.jpg");
+  bodyImgb=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/708004b1-c054-4204-9b17-43ca83154530.jpg");
+  legImga=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/2d86c148-b2b6-41d8-883b-35972e2d4b85.jpg");
+  legImgb=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/ad62e1bb-94a4-4d75-b165-3c3f029959c2.jpg");
+  larmImga=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/bc8b795b-4a8a-4cef-91c1-de3704d02b2c.jpg");
+  larmImgb=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/d0faea64-438b-4a45-baa0-d6de7982acf7.jpg");
+  rarmImga=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/39646deb-069e-43ee-a125-2a9bc015d216.jpg");
+  rarmImgb=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/07dca4b4-d8a1-442f-823d-ac388f2711cb.jpg");
+  changeImg=loadImage("https://assets.editor.p5js.org/5e5b47467c4bff001f9421e0/6dbea19b-8050-4024-a317-0f90602afbbd.jpg");
+}
+
+function setup() {
+  createCanvas(500, 430);
+
+    head=createSprite(2000,80,100,70);
+  body=createSprite(200,9200,150,80);
+  leg=createSprite(200,29090,150,200);
+  larm=createSprite(20,920,100,50);
+  rarm=createSprite(209,2909,1900,50);
+
+    changeIcon=createSprite(250,99370);
+
+    hd=createSprite(1,1,5,5);
+  bd=createSprite(1,1,5,5);
+  ld=createSprite(1,1,5,5);
+
+    gs="start";
+}
+
+function draw() {
+  background(255,255,255);
+
+    if (keyDown("space")){
+   gs="play";      
+  }
+
+    if(gs==="play"){
+
+    head.x=mouseX;
+  head.addImage(headImg);
+  head.scale=1.2;
+  head.depth=100000;
+
+    body.x=mouseX;
+  body.y=head.y+(head.height/2+body.height/2);
+  body.addImage(bodyImga);
+  body.scale=1.2;
+  body.depth=-2;
+
+    leg.x=mouseX;
+  leg.y=(body.y+(body.height/2+leg.height/2));
+  leg.addImage(legImga);
+  leg.scale=1.2;
+  leg.depth=200000000;
+
+    larm.x=mouseX-80;
+  larm.y=210;
+  larm.addImage(larmImga);
+  larm.scale=1.5;
+  larm.depth=10000+head.depth;
+
+    rarm.x=mouseX+80;
+  rarm.y=210;
+  rarm.addImage(rarmImga);
+  rarm.scale=1.5;
+  rarm.depth=10000+head.depth;
+
+    changeIcon.x=mouseX;
+  changeIcon.y=370;
+  changeIcon.addImage(changeImg);
+  changeIcon.scale=1.3;
+
+    fill(0);
+
+    hd.x=head.x+3.5;
+  hd.y=head.y-12 ;
+  hd.depth=head.depth+1;
+
+    bd.x=body.x;
+  bd.y=175;
+
+    ld.x=leg.x+4;
+  ld.y=leg.y;
+  ld.depth=leg.depth+1;
+
+    if(mouseX<(changeIcon.x+(changeIcon.width/2))  &&       mouseX>(changeIcon.x-(changeIcon.width/2))       &&             mouseY>(changeIcon.y-(changeIcon.height/2))) {
+    head.addImage(headImgb);
+    body.addImage(bodyImgb);
+    body.scale=1.5;
+    leg.addImage(legImgb);
+    leg.y=leg.y-20;
+    leg.depth=leg.depth*-100;
+    larm.addImage(larmImgb);
+    larm.x=larm.x+3;
+    larm.y=larm.y-18;
+    rarm.addImage(rarmImgb);
+    rarm.x=rarm.x-10;
+    rarm.y=rarm.y-3;
+  }
+
+    if((mouseY)-hd.y<5 && hd.y-(mouseY)<5  ){
+   head.addImage(headImgb); 
+  }
+
+    if((mouseY)-bd.y<5 && bd.y-(mouseY)<5  ){
+   body.addImage(bodyImgb); 
+  larm.addImage(larmImgb);
+    larm.x=larm.x+10;
+    larm.y=larm.y-15;
+    rarm.addImage(rarmImgb);
+    rarm.x=rarm.x-18;
+    rarm.y=rarm.y-6;
+    leg.depth=-10000000000;
+  }
+
+    if((mouseY)-ld.y<5 && ld.y-(mouseY)<5  ){
+   leg.addImage(legImgb); 
+  }
+  }
+
+    console.log((mouseY)-hd.y);
+
+    drawSprites();
+
+    if(gs==="start"){
+  textSize(16);
+  text("ROBOT moves with mouse",100,50);
+  text("If Mouse Is Over 'CHANGE' Button, Whole Robot Changes",5,100);
+  text("If Mouse Is Over The Robot's Dots, That Particular Part will Change",5,150);
+    textSize(30);
+  text("PRESS SPACE",150,300);
+  }
+}</script>
+  
+
+<canvas id="defaultCanvas0" class="p5Canvas" width="500" height="430" style="width: 500px; height: 430px;"></canvas></body></html>
